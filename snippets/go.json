@@ -1,0 +1,13 @@
+{
+    "if err != nil": {
+        "prefix": "iferr",
+        "body": "if err != nil {\n    return ${2:nil, }${3:err}\n}",
+        "description": "Snippet for if err != nil"
+    },
+
+    "for i := 0": {
+        "prefix": "fori",
+        "body": "for ${1:i} := ${2:0}; ${1:i} < ${3:n}; ${1:i}++ {\n\t$4\n}"
+    }
+
+}

@@ -7,7 +7,11 @@ return {
     local jdtls = require("jdtls")
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+    local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if ok then
+      capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+    end
 
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true

@@ -33,9 +33,25 @@ return {
           command = home .. "/.local/share/nvim/mason/packages/black/venv/bin/black",
         },
         prettier = {
-          command = home .. "/.local/share/nvim/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs"
-        }
+          command = home .. "/.local/share/nvim/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
+        },
       },
+    })
+
+    local util = require("conform.util")
+
+    -- advanced 'prettier' config
+    local prettier_fmt = require("conform.formatters.prettier")
+    require("conform").formatters.prettier = vim.tbl_deep_extend("force", prettier_fmt, {
+      args = util.extend_args(prettier_fmt.args, { "--print-width", "80" }),
+      range_args = util.extend_args(prettier_fmt.range_args, { "--print-width", "80" }),
+    })
+
+    -- disable log file for 'latexindent'
+    local latexindent = require("conform.formatters.latexindent")
+    require("conform").formatters.latexindent = vim.tbl_deep_extend("force", latexindent, {
+      args = util.extend_args(latexindent.args, { "-g", "/dev/null" }),
+      range_args = util.extend_args(latexindent.range_args, { "-g", "/dev/null" }),
     })
 
     vim.keymap.set("n", "gF", function()

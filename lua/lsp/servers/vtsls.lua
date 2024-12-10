@@ -11,6 +11,9 @@ return {
       },
     },
     javascript = {
+      suggest = {
+        names = true,
+      },
       inlayHints = {
         parameterNames = { enabled = "all" },
         parametertypes = { enabled = true },

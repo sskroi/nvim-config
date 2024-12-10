@@ -19,7 +19,7 @@ return {
       map("n", "<localleader>f", pickers.find_files, { desc = "Telescope: find files" })
       map("n", "<localleader>g", pickers.live_grep, { desc = "Telescope: live grep" })
       map("n", "<localleader>b", pickers.buffers, { desc = "Telescope: buffers" })
-      map("n", "<localleader>o", pickers.oldfiles, { desc = "Telescope: show recent using files" })
+      map("n", "<localleader>r", pickers.oldfiles, { desc = "Telescope: show recent using files" })
 
       map("n", "<localleader><localleader>", function()
         pickers.current_buffer_fuzzy_find({ default_text = vim.fn.expand("<cword>") })

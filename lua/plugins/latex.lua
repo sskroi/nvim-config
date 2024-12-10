@@ -6,6 +6,13 @@ return {
     -- VimTeX configuration goes here, e.g.
     vim.g.vimtex_view_method = "mupdf"
     vim.g.vimtex_mappings_prefix = "<leader>p"
+    vim.g.vimtex_compiler_latexmk = {
+      options = {
+        "-verbose",
+        "-file-line-error",
+        "-interaction=nonstopmode",
+      },
+    }
 
     -- vim.g.vimtex_quickfix_ignore_filters = {"Overfull", "Underfull", "babel", "biblatex"}
     vim.g.vimtex_quickfix_ignore_filters = { ".*" }

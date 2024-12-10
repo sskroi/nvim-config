@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  enabled = true,
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
@@ -70,16 +71,17 @@ return {
         end, { "i", "s" }),
       },
       sorting = {
+        -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
         comparators = {
-          cmp.config.compare.locality,
-          cmp.config.compare.recently_used,
-          cmp.config.compare.exact,
           cmp.config.compare.offset,
           cmp.config.compare.score,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
+          cmp.config.compare.exact,
+          -- cmp.config.compare.locality,
+          -- cmp.config.compare.recently_used,
+          -- cmp.config.compare.kind,
+          -- cmp.config.compare.sort_text,
+          -- cmp.config.compare.length,
+          -- cmp.config.compare.order,
         },
       },
       sources = {

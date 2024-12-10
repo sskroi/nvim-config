@@ -96,4 +96,6 @@ map("x", "<C-n>", move_selected("+"), { desc = "Move current selection downward 
 map("x", "<C-p>", move_selected("-"), { desc = "Move current selection upward and reselect" })
 map("i", "<S-Cr>", "<C-o>o", { desc = "Create new line below and jump there" })
 map("i", "<C-Cr>", "<C-o>O", { desc = "Create new line upper and jump there" })
+map("x", "<", "<gv", { desc = "One indent left and reselect" })
+map("x", ">", ">gv|", { desc = "One indent right and reselect" })
 

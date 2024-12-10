@@ -7,6 +7,9 @@ return {
       keymaps = {
         toggle_preview = "i", -- default "K"
       },
+      outline_items = {
+        show_symbol_lineno = true,
+      },
     })
 
     vim.keymap.set("n", "<leader>s", "<cmd>Outline<CR>", { desc = "Toggle outline" })

@@ -1,6 +1,6 @@
 return {
   "Wansmer/langmapper.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1,
   lazy = false,
   config = function()

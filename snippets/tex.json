@@ -1,0 +1,6 @@
+{
+  "Verbatim env": {
+    "prefix": "verb",
+    "body": "\\begin{Verbatim}\n$1\n\\end{Verbatim}"
+  }
+}

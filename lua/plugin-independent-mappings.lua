@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
-map({ "n", "i", "x" }, "<C-s>", "<Cmd>w<CR>", { desc = "Write current buffer" })
-map({ "n", "i", "x" }, "<C-q>", "<Cmd>q<CR>", { desc = "Quit current window" })
 map({ "n" }, "<C-a>", "ggVG", { desc = "Select all" })
+map({ "n" }, "<leader>q", "<cmd>wqall<CR>", { desc = "Write all buffers and quit" })
+map({ "n" }, "gs", "<cmd>wall<CR>", { desc = "Write all buffers" })
 
 -- Navigating on windows
 map("n", "<C-h>", "<C-w>h", { desc = "Focus on left-side window" })
@@ -11,10 +11,6 @@ map("n", "<C-k>", "<C-w>k", { desc = "Focus on top-side window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Focus on right-side window" })
 
 map("n", "<Esc>", "<Cmd>nohlsearch<CR>", { desc = "Stop highlighting search", silent = true })
-
--- -- Lines moving in visual mode
--- map("x", "<C-j>", ":move '>+2<CR>gv")
--- map("x", "<C-k>", ":move '<-1<CR>gv")
 
 -- ============================================================================
 -- Movements on text
@@ -99,3 +95,6 @@ map("i", "<C-Cr>", "<C-o>O", { desc = "Create new line upper and jump there" })
 map("x", "<", "<gv", { desc = "One indent left and reselect" })
 map("x", ">", ">gv|", { desc = "One indent right and reselect" })
 
+map("n", "C", '"_C', { desc = "'C' without copying to clipboard" })
+map("n", "D", '"_D', { desc = "'D' without copying to clipboard" })
+map("n", "x", '"_x', { desc = "'x' without copying to clipboard" })

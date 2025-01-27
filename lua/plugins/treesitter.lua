@@ -20,6 +20,7 @@ return {
           "html",
           "javascript",
           "typescript",
+          "tsx",
         },
         highlight = {
           enable = true,

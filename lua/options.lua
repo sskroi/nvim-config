@@ -6,6 +6,7 @@ vim.g.maplocalleader = "["
 
 local options = {
   undofile = true,
+  swapfile = true,
 
   -- Using system clipboard
   clipboard = "unnamedplus", -- copy text to system buffer
@@ -45,6 +46,8 @@ local options = {
 
   splitbelow = true,
   splitright = true,
+
+  sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "winsize", "skiprtp" },
 }
 
 for option_name, value in pairs(options) do

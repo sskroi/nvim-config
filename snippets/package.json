@@ -1,13 +1,30 @@
 {
-	"name": "snippets",
-	"contributes": {
-		"snippets": [
-			{
-				"language": [
-					"go"
-				],
-				"path": "./go.json"
-			}
-		]
-	}
+  "name": "snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./go.json"
+      },
+      {
+        "language": [
+          "tex"
+        ],
+        "path": "./tex.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./js-ts.json"
+      }
+    ]
+  }
 }

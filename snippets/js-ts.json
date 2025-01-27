@@ -1,0 +1,10 @@
+{
+  "arrow function": {
+    "prefix": "af",
+    "body": "(${1}) => ${2}"
+  },
+  "arrow function with body": {
+    "prefix": "f",
+    "body": "(${1}) => {\n\t${0}\n}"
+  }
+}

@@ -1,19 +1,22 @@
 return {
   settings = {
+    vtsls = {
+      autoUseWorkspaceTsdk = true,
+    },
     typescript = {
       inlayHints = {
         parameterNames = { enabled = "all" },
-        parameterTypes = { enabled = true },
-        variableTypes = { enabled = true },
+        parameterTypes = { enabled = false },
+        variableTypes = { enabled = false },
         propertyDeclarationTypes = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = false },
         enumMemberValues = { enabled = true },
+      },
+      preferences = {
+        -- importModuleSpecifierEnding = "minimal"
       },
     },
     javascript = {
-      suggest = {
-        names = true,
-      },
       inlayHints = {
         parameterNames = { enabled = "all" },
         parametertypes = { enabled = true },

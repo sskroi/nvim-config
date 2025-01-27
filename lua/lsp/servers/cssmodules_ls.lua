@@ -4,7 +4,7 @@ local M = {}
 
 M.on_attach = function(client, bufnr)
   set_keymaps(client, bufnr)
-  client.server_capabilities.definitionProvider = false
+  client.server_capabilities.definitionProvider = true
 end
 
 M.settings = {}

@@ -47,7 +47,7 @@ local options = {
   splitbelow = true,
   splitright = true,
 
-  sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "winsize", "skiprtp" },
+  sessionoptions = { "buffers", "curdir", "folds", "help", "tabpages", "winsize", "skiprtp", "globals" },
 }
 
 for option_name, value in pairs(options) do

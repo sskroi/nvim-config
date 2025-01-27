@@ -4,7 +4,7 @@ local init_neotree_state_saving = function()
   local state = manager.get_state("filesystem")
 
   -- this variable stores state in saved session
-  local NEOTREE_STATE_VAR_NAME = "NEOTREE_STATE"
+  local NEOTREE_STATE_VAR_NAME = "Neotree_state"
 
   local neotree_get_state = function()
     local renderer = require("neo-tree.ui.renderer")
@@ -25,20 +25,25 @@ local init_neotree_state_saving = function()
 
   local before_session_save = function()
     local neotree_state = neotree_get_state()
+    local neotree_json_state = vim.json.encode(neotree_state)
 
-    vim.api.nvim_set_var(NEOTREE_STATE_VAR_NAME, neotree_state)
+    vim.api.nvim_set_var(NEOTREE_STATE_VAR_NAME, neotree_json_state)
     command.execute({ action = "close" })
   end
 
   local after_session_load = function()
-    local neotree_state = vim.api.nvim_get_var(NEOTREE_STATE_VAR_NAME)
-    neotree_set_state(neotree_state)
+    local ok, neotree_json_state = pcall(vim.api.nvim_get_var, NEOTREE_STATE_VAR_NAME)
+    if not ok then
+      return
+    end
 
+    local neotree_state = vim.json.decode(neotree_json_state)
+
+    neotree_set_state(neotree_state)
     if neotree_state.is_open then
-      command.execute({
-        action = "show",
-        dir = neotree_state.path,
-      })
+      vim.schedule(function()
+        command.execute({ action = "show", dir = neotree_state.path })
+      end)
     end
   end
 

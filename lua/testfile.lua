@@ -1,5 +1,0 @@
-local renderer = require("neo-tree.ui.renderer")
-local manager = require("neo-tree.sources.manager")
-local state = manager.get_state("filesystem")
-local expanded_nodes = renderer.get_expanded_nodes(state.tree)
-print(vim.inspect(expanded_nodes))

@@ -3,7 +3,7 @@ return {
   version = "*",
   config = function()
     require("toggleterm").setup({
-      open_mapping = "<A-q>",
+      open_mapping = "<A-r>",
       direction = "float",
     })
   end,

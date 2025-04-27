@@ -1,5 +1,5 @@
+-- formatting
 return {
-  -- Plugin for formatting files
   "stevearc/conform.nvim",
   config = function()
     local home = os.getenv("HOME")
@@ -8,7 +8,7 @@ return {
 
     require("conform").setup({
       formatters_by_ft = {
-        lua = { "stylua" },
+        -- lua = { "stylua" },
         xml = { "xmlformatter" },
         python = { "black" },
         tex = { "latexindent" },

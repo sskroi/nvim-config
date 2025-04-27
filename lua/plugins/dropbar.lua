@@ -1,4 +1,5 @@
-return { -- Breadcrumbs
+-- breadcrumbs
+return {
   "Bekaboo/dropbar.nvim",
   config = function()
     vim.keymap.set("n", "<leader>e", require("dropbar.api").pick, { desc = "Dropbar pick" })

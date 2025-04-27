@@ -18,8 +18,12 @@ M.set_keymap = function(_, bufnr)
   -- Diagnostic
   map("n", "gl", vim.diagnostic.open_float, d("Diagnostic open float"))
   map("n", "<leader>la", vim.diagnostic.setloclist, d("Diagnostic open list"))
-  map("n", "[d", vim.diagnostic.goto_prev, d("Diagnostic go to prev"))
-  map("n", "]d", vim.diagnostic.goto_next, d("Diagnostic go to next"))
+  map("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, d("Go to next diagnostic"))
+  map("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end, d("Go to prev diagnostic"))
 
   -- Show code action
   map("n", "ga", vim.lsp.buf.code_action, d("Show available code action"))
@@ -39,10 +43,7 @@ M.set_keymap = function(_, bufnr)
   -- Rename
   map("n", "gR", vim.lsp.buf.rename, d("Rename symbol (LSP)"))
 
-  -- Inlay hints
-  map("n", "<leader>ll", function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end, d("Toggle inlay hints"))
+  map("i", "<C-q>", vim.lsp.buf.signature_help, d("Show signature help"))
 end
 
 return M

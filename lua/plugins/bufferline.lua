@@ -2,6 +2,8 @@ return {
   {
     "akinsho/bufferline.nvim",
     config = function()
+      local bufdel_func = Snacks and Snacks.bufdelete or function(bufnr) vim.cmd("bdelete" .. bufnr) end
+
       local buffer_delete = function()
         local bufnr = vim.api.nvim_get_current_buf()
         local bufferline_index = require("bufferline.state").current_element_index
@@ -21,7 +23,7 @@ return {
             require("bufferline.commands").cycle(1)
           end
 
-          vim.api.nvim_buf_delete(bufnr, { force = false })
+          bufdel_func(bufnr)
         end
       end
 
@@ -33,8 +35,6 @@ return {
             { filetype = "neo-tree" },
           },
           diagnostics = "nvim_lsp",
-          -- need for setup catppuccin theme for bufferline
-          highlights = require("catppuccin.groups.integrations.bufferline").get(),
           hover = { enabled = true, delay = 0, reveal = { "close" } },
           close_command = buffer_delete,
         },

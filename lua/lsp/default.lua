@@ -13,6 +13,12 @@ M.single_file_support = true
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- folding
+M.capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
 -- nvim-cmp
 local cmp_ok, cmp = pcall(require, "cmp_nvim_lsp")
 if cmp_ok then

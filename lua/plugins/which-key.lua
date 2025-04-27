@@ -32,6 +32,7 @@ return {
       { "<leader>f", group = "Telescope" },
       { "<leader>g", group = "Git" },
       { "<leader>l", group = "LSP" },
+      { "<leader>u", group = "Toggle some settings" },
     })
   end,
 }

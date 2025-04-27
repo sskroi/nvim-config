@@ -21,3 +21,54 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+local function init_working_dir_worktime_saving()
+  local WORKING_TIME_VAR_NAME = "WorkingDirectoryWorkTime"
+  local current_session_start_time = 0
+
+  local function get_cwd_worktime()
+    local session_time = os.time() - current_session_start_time
+
+    local ok, prev_sessions_time = pcall(vim.api.nvim_get_var, WORKING_TIME_VAR_NAME)
+    if not ok or prev_sessions_time == vim.NIL or prev_sessions_time == nil then
+      prev_sessions_time = 0
+    end
+
+    local total_time = prev_sessions_time + session_time
+    return total_time
+  end
+
+  vim.api.nvim_create_user_command("WorkTime", function()
+    local work_time = get_cwd_worktime()
+
+    local hours = math.floor(work_time / 3600)
+    local remaining_seconds = work_time % 3600
+    local minutes = math.floor(remaining_seconds / 60)
+    local seconds = remaining_seconds % 60
+
+    local formatted_time = string.format("%02d:%02d:%02d", hours, minutes, seconds)
+    print("Directory work time: " .. formatted_time)
+  end, {})
+
+  local function after_session_load()
+    current_session_start_time = os.time()
+  end
+
+  local function before_session_save()
+    vim.api.nvim_set_var(WORKING_TIME_VAR_NAME, get_cwd_worktime())
+  end
+
+  -- https://github.com/folke/persistence.nvim events
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PersistenceLoadPost",
+    desc = "Init session start time",
+    callback = after_session_load,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PersistenceSavePre",
+    desc = "Save working directory worktime",
+    callback = before_session_save,
+  })
+end
+
+init_working_dir_worktime_saving()

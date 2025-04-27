@@ -1,6 +1,8 @@
+-- start screen dashboard
 return {
   "goolord/alpha-nvim",
-  enabled = true,
+  -- migrate to snacks dashboard
+  enabled = false,
   config = function()
     local dashboard = require("alpha.themes.dashboard")
 

@@ -1,13 +1,19 @@
 local init_neotree_state_saving = function()
+  require("neo-tree").ensure_config()
+
   local command = require("neo-tree.command")
   local manager = require("neo-tree.sources.manager")
   local state = manager.get_state("filesystem")
+  local renderer = require("neo-tree.ui.renderer")
 
   -- this variable stores state in saved session
   local NEOTREE_STATE_VAR_NAME = "Neotree_state"
 
+  local function set_expanded_nodes(nodes)
+    state.force_open_folders = nodes
+  end
+
   local neotree_get_state = function()
-    local renderer = require("neo-tree.ui.renderer")
     local expanded_nodes = renderer.get_expanded_nodes(state.tree)
 
     return {
@@ -20,11 +26,14 @@ local init_neotree_state_saving = function()
 
   local neotree_set_state = function(state_to_restore)
     state.filtered_items.visible = state_to_restore.show_hidden
-    state.force_open_folders = state_to_restore.expanded_nodes
+    set_expanded_nodes(state_to_restore.expanded_nodes)
   end
 
   local before_session_save = function()
-    local neotree_state = neotree_get_state()
+    local ok, neotree_state = pcall(neotree_get_state)
+    if not ok then
+      return
+    end
     local neotree_json_state = vim.json.encode(neotree_state)
 
     vim.api.nvim_set_var(NEOTREE_STATE_VAR_NAME, neotree_json_state)
@@ -38,6 +47,9 @@ local init_neotree_state_saving = function()
     end
 
     local neotree_state = vim.json.decode(neotree_json_state)
+    if neotree_state == vim.NIL or neotree_state == nil then
+      return
+    end
 
     neotree_set_state(neotree_state)
     if neotree_state.is_open then
@@ -66,6 +78,7 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
   },
+  enabled = true,
   branch = "v3.x",
   config = function()
     require("neo-tree").setup({

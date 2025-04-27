@@ -1,6 +1,6 @@
+-- debug adapter
 return {
   {
-    -- debug adapter
     "mfussenegger/nvim-dap",
     dependencies = { "nvim-neotest/nvim-nio" },
     config = function()

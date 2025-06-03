@@ -19,20 +19,19 @@ return {
       },
       list = {
         selection = {
-          preselect = function(ctx)
-            return ctx.mode ~= "cmdline"
-          end,
+          preselect = true,
           auto_insert = true,
         },
       },
       ghost_text = {
-        enabled = true
+        enabled = false
       },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 1000,
       },
       menu = {
+        auto_show = true,
         draw = {
           columns = {
             { "label",            "kind_icon", "kind", gap = 1 },
@@ -67,6 +66,9 @@ return {
           min_keyword_length = 4,
           max_items = 10,
         },
+        snippets = {
+          score_offset = -10,
+        }
       },
     },
     snippets = {
@@ -82,6 +84,27 @@ return {
 
     },
     signature = { enabled = false },
+    cmdline = {
+      enabled = true,
+      completion = {
+        menu = {
+          auto_show = true
+        },
+        list = {
+          selection = {
+            preselect = false
+          }
+        }
+      }
+    },
+    fuzzy = {
+      sorts = {
+        'exact',
+        -- defaults
+        'score',
+        'sort_text',
+      },
+    },
     keymap = {
       preset = "none",
 
@@ -91,8 +114,8 @@ return {
 
       ["<C-n>"] = { "select_next", "fallback" },
       ["<C-p>"] = { "select_prev", "fallback" },
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
       ["<C-k>"] = { "show_documentation", "hide_documentation", "fallback" },
       ["<C-u>"] = { "scroll_documentation_up", "fallback" },

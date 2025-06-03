@@ -15,17 +15,20 @@ local options = {
 
   shortmess = "laoOtTICF",
 
+  spelllang = "en_us,ru_ru",
+  spell = false,
+
   -- UI
   termguicolors = true, --  24-bit RGB colors
   scrolloff = 100, -- cursor always in center vertically
-  cursorline = true, -- highlight cuurent line
-  number = true, -- show cuurent line number
+  cursorline = true, -- highlight current line
+  number = true, -- show current line number
   relativenumber = true,
   wrap = true,
   linebreak = true, -- smart wrap
-  pumheight = 7, -- popup menu hieght
+  pumheight = 7, -- popup menu height
   showmode = false, -- mod shows in status line plugin
-  -- Always show the signcolumn, otherwise it would shift the text each time diagnostics appeared/became resolved
+  -- Always show the sign column, otherwise it would shift the text each time diagnostics appeared/became resolved
   signcolumn = "yes",
   laststatus = 3,
 

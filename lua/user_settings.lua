@@ -8,6 +8,7 @@ local filter_clients = function(tbl)
 end
 
 PREF = {
+  auto_save_ft = { "javascript", "typescript", "javascriptreact", "typescriptreact", "lua" },
   common = {
     textwidth = 100,
     tabwidth = 2,
@@ -15,11 +16,11 @@ PREF = {
 
   lsp = {
     -- List of servers to run
-    -- Also applies to `ensure_installed` in `mason-lspconfig`
+    -- Also applies to `ensure_installed` in `mason-tools-installer`
     active_servers = filter_clients({
       lua_ls = true,
       vtsls = true,
-      cssmodules_ls = false,
+      cssmodules_ls = true,
       cssls = true,
       emmet_ls = true,
       bashls = true,

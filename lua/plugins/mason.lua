@@ -1,11 +1,10 @@
 -- package manager
 return {
   {
-    "williamboman/mason.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
     },
     lazy = false,
     config = function()
@@ -28,6 +27,7 @@ return {
 
       require("mason-tool-installer").setup({
         ensure_installed = ensure_installed,
+        auto_update = true,
         integrations = {
           ["mason-lspconfig"] = true,
         },

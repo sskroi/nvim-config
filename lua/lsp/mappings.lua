@@ -1,19 +1,19 @@
 local map = vim.keymap.set
+local del = vim.keymap.del
 
----Add desc for keymap opts
----@param opts table Keymap opts
----@return function(str: string): table
-local function desc(opts)
-  return function(str)
-    opts.desc = str
-    return opts
+-- disable default LSP mappings
+pcall(del,"n", "grr")
+pcall(del,"n", "gri")
+pcall(del,"n", "grn")
+pcall(del,"n", "gra")
+pcall(del,"n", "gO")
+
+local M = {}
+
+M.set_keymaps = function(_, bufnr)
+  local d = function(desc)
+    return { buffer = bufnr, desc = desc }
   end
-end
-
-M = {}
-
-M.set_keymap = function(_, bufnr)
-  local d = desc({ buffer = bufnr, desc = "" })
 
   -- Diagnostic
   map("n", "gl", vim.diagnostic.open_float, d("Diagnostic open float"))

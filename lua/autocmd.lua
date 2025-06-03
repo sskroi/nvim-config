@@ -1,7 +1,9 @@
+local utils = require("myutils")
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight copied text",
   callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
+    vim.hl.on_yank({ higroup = "IncSearch", timeout = 100 })
   end,
 })
 
@@ -72,3 +74,24 @@ local function init_working_dir_worktime_saving()
 end
 
 init_working_dir_worktime_saving()
+
+local function write_buf(buf_nr)
+  local is_modified = vim.api.nvim_get_option_value("modified", { buf = buf_nr })
+  local ft = vim.api.nvim_get_option_value("filetype", { buf = buf_nr })
+
+  if is_modified and utils.contains(PREF.auto_save_ft, ft) then
+    vim.cmd("silent write")
+  end
+end
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function(args)
+    write_buf(args.buf)
+  end
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function(args)
+    write_buf(args.buf)
+  end
+})

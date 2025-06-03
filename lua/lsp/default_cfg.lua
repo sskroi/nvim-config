@@ -1,11 +1,6 @@
 -- Default settings for each server
+--- @type vim.lsp.Config
 local M = {}
-
-local set_keymaps = require("lsp.mappings").set_keymap
-
-M.on_attach = function(client, bufnr)
-  set_keymaps(client, bufnr)
-end
 
 M.autostart = true
 
